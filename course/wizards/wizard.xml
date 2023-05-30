@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="form_wizard" model="ir.ui.view">
+            <field name="name">form_wizard</field>
+            <field name="model">open.academy.wizard</field>
+            <field name="arch" type="xml">
+                <form >
+                    <sheet>
+                        <group>
+                            <field name="session_id"/>
+                            <field name="attendee_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard" model="ir.actions.act_window">
+            <field name="name">Rooms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">open.academy.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+<!--        <menuitem id="menu_wizard" name="Rooms" parent="course.master_open_academy_menu"-->
+<!--                  action="action_wizard"/>-->
+    </data>
+</odoo>

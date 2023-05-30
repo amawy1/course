@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_scheduled_reminder_form">
+            <field name="name">scheduled.reminder.form</field>
+            <field name="model">scheduled.reminder</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="description"/>
+                            <field name="recipients"/>
+<!--                            <field name="scheduled_reminders" mode="tree">-->
+<!--                                <tree>-->
+<!--                                    <field name="scheduled_time"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_scheduled_reminder_tree">
+            <field name="name">scheduled.reminder.tree</field>
+            <field name="model">scheduled.reminder</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="description"/>
+                    <field name="recipients"/>
+<!--                    <field name="scheduled_reminders"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_scheduled_reminder">
+            <field name="name">Scheduled Reminders</field>
+            <field name="res_model">scheduled.reminder</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_scheduled_reminder" name="Scheduled Reminders" action="action_scheduled_reminder"/>
+
+    </data>
+</odoo>

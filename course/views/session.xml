@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+        ################################form##################
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session_form_view</field>
+            <field name="model">open.academy.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="course_id"/>
+                                <field name="name"/>
+                                <field name="instructor_id"/>
+                                <field name="attendee_ids" widget="many2many_tags"
+                                />
+                            </group>
+                            <group string="Schedule">
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+<!--                                <field name="duration"/>-->
+                                <field name="seats"/>
+                                <field name="taken_seats" widget="progressbar"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session_tree_view</field>
+            <field name="model">open.academy.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session Form">
+                    <field name="course_id"/>
+                    <field name="name"/>
+                    <field name="instructor_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+<!--                    <field name="duration"/>-->
+                    <field name="seats"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="open_academy_session_view_calendar">
+            <field name="model">open.academy.session</field>
+            <field name="arch" type="xml">
+                <calendar string="Scheduled Calender" date_start="start_date" date_stop="end_date">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="open_academy_session_view_graph" model="ir.ui.view">
+            <field name="name">open_academy_session_view_graph</field>
+            <field name="model">open.academy.session</field>
+            <field name="arch" type="xml">
+                <graph string="Open Academy Session" sample="1">
+                    <field name="seats" type="row"/>
+                </graph>
+            </field>
+        </record>
+        <record id="open_academy_session_view_search" model="ir.ui.view">
+            <field name="name">open_academy_session_view_search</field>
+            <field name="model">open.academy.session</field>
+            <field name="arch" type="xml">
+                <search string="Account Type">
+                    <field name="name"/>
+                    <group expand="1" string="Group By Name">
+                        <filter string="Group By Name" name="name" context="{'group_by':'name'}"/>
+                    </group>
+                    <filter string="Seats" name="name" domain="[('seats','&gt;', 1)]"/>
+
+                </search>
+            </field>
+        </record>
+        <record id="session_action_id" model="ir.actions.act_window">
+            <field name="name">Rooms</field>
+            <field name="res_model">open.academy.session</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban,search</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new account type
+                </p>
+            </field>
+        </record>
+        <menuitem id="session_menu" parent="course.master_open_academy_menu" name="Rooms" action="session_action_id"
+                  sequence="2"/>
+
+    </data>
+</odoo>
